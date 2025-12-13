@@ -104,7 +104,8 @@ The API will be available at `http://localhost:8000`
 ```bash
 python src/monitor_drift.py
 ```
-![Alt text](../../Pictures/Screenshots/drit_sc.png)
+
+![Alt text](images/drift_ss.png)
 
 ### 7. Rollback Model (if needed)
 
