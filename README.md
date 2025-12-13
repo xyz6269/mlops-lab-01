@@ -177,5 +177,5 @@ The model registry maintains:
 
 ## 👥 Authors
 
-Boulaamail Mohamed a
+Boulaamail Mohamed ali
 
