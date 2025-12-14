@@ -85,11 +85,15 @@ python src/prepare_data.py
 python src/train.py
 ```
 
+![Alt text](images/train-mlops-01.png)
+
 ### 4. Evaluate Model
 
 ```bash
 python src/evaluate.py
 ```
+
+![img.png](images/img.png)
 
 ### 5. Start Prediction API
 
@@ -116,6 +120,8 @@ python src/rollback.py
 python -c "from src.rollback import main; main('churn_model_v1_YYYYMMDD_HHMMSS.joblib')"
 ```
 
+![img_2.png](images/img_2.png)
+
 ## 🔌 API Endpoints
 
 ### Health Check
@@ -125,6 +131,8 @@ GET /health
 #example
 curl -X GET http://127.0.0.1:8000/health 
 ```
+
+![img_1.png](images/img_1.png)
 
 ### Make Prediction
 ```bash
