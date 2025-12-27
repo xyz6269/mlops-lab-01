@@ -54,7 +54,13 @@ jobs:
 
 
       - name: Exécuter pipeline ML via DVC
-        run: dvc repro
+        working-directory: .
+        run: |
+          pwd
+          ls -la
+          dvc repro
+
+
 
 
       - name: Vérifier métriques (Quality Gate F1)
