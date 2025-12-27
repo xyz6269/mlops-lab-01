@@ -1,0 +1,22 @@
+schema: '2.0'
+stages:
+  prepare:
+    cmd: python src/prepare_data.py --force
+    deps:
+    - path: data/raw.csv
+      hash: md5
+      md5: 6a7b0e0ac04bf62f4e45c2d2ebe34f69
+      size: 26732
+    - path: src/prepare_data.py
+      hash: md5
+      md5: d15683443fccce6559a642cc725f7a07
+      size: 7514
+    outs:
+    - path: data/processed.csv
+      hash: md5
+      md5: 5a4189ce039bd5fda4e5da22865f3401
+      size: 27039
+    - path: registry/train_stats.json
+      hash: md5
+      md5: f1759980f204e3d598cdeb5a57effac4
+      size: 271
