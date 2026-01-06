@@ -185,9 +185,7 @@ The model registry maintains:
 5. **Monitoring**: Production model is monitored for drift
 6. **Rollback**: Can revert to previous versions if performance degrades
 
-## 👥 Authors
 
-Boulaamail Mohamed ali
 
 # TP3
 
@@ -198,6 +196,17 @@ Boulaamail Mohamed ali
 ![tp3-pic3](tp3-pictures/tp3-pic3.png)
 
 ![tp3-pic4](tp3-pictures/tp3-pic4.png)
+
+# TP 4
+
+![tp4-pic1](tp4-pictures/tp4-pic1.png)
+
+![tp4-pic2](tp4-pictures/tp4-pic2.png)
+
+
+## 👥 Authors
+
+Boulaamail Mohamed ali
 
 
 
