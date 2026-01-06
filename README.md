@@ -204,6 +204,47 @@ The model registry maintains:
 ![tp4-pic2](tp4-pictures/tp4-pic2.png)
 
 
+# TP 5
+
+![tp5-pic1](tp5-pictures/Screenshot%20from%202026-01-06%2023-17-30.png)
+
+![tp5-pic2](tp5-pictures/Screenshot%20from%202026-01-06%2023-18-12.png)
+
+![tp5-pic3](tp5-pictures/Screenshot%20from%202026-01-06%2023-21-42.png)
+
+![tp5-pic4](tp5-pictures/Screenshot%20from%202026-01-06%2023-23-57.png)
+
+![tp5-pic5](tp5-pictures/Screenshot%20from%202026-01-06%2023-25-41.png)
+
+![tp5-pic6](tp5-pictures/Screenshot%20from%202026-01-06%2023-30-18.png)
+
+![tp5-pic7](tp5-pictures/Screenshot%20from%202026-01-06%2023-34-43.png)
+
+![tp5-pic8](tp5-pictures/Screenshot%20from%202026-01-06%2023-37-40.png)
+
+![tp5-pic9](tp5-pictures/Screenshot%20from%202026-01-06%2023-39-14.png)
+
+![tp5-pic10](tp5-pictures/Screenshot%20from%202026-01-06%2023-39-31.png)
+
+![tp5-pic11](tp5-pictures/Screenshot%20from%202026-01-06%2023-42-14.png)
+
+![tp5-pic12](tp5-pictures/Screenshot%20from%202026-01-06%2023-46-14.png)
+
+![tp5-pic13](tp5-pictures/Screenshot%20from%202026-01-06%2023-46-30.png)
+
+![tp5-pic14](tp5-pictures/Screenshot%20from%202026-01-06%2023-46-42.png)
+
+![tp5-pic15](tp5-pictures/Screenshot%20from%202026-01-06%2023-48-37.png)
+
+![tp5-pic16](tp5-pictures/Screenshot%20from%202026-01-06%2023-49-15.png)
+
+![tp5-pic17](tp5-pictures/Screenshot%20from%202026-01-06%2023-49-50.png)
+
+![tp5-pic18](tp5-pictures/Screenshot%20from%202026-01-06%2023-50-26.png)
+
+![tp5-pic19](tp5-pictures/Screenshot%20from%202026-01-06%2023-51-21.png)
+
+
 ## 👥 Authors
 
 Boulaamail Mohamed ali
