@@ -200,7 +200,7 @@ def clean_raw_data(df: pd.DataFrame) -> pd.DataFrame:
 
     df = df.copy()
     print("change test for dvc")
-
+    print("chage test 2.0 for dvc")
 
 
     df["avg_session_minutes"] = df["avg_session_minutes"].clip(lower=0.0)

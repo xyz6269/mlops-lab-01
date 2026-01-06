@@ -189,3 +189,15 @@ The model registry maintains:
 
 Boulaamail Mohamed ali
 
+# TP3
+
+![tp3-pic1](tp3-pictures/tp3-pic1.png)
+
+![tp3-pic2](tp3-pictures/tp3-pic2.png)
+
+![tp3-pic3](tp3-pictures/tp3-pic3.png)
+
+![tp3-pic4](tp3-pictures/tp3-pic4.png)
+
+
+
