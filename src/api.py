@@ -32,6 +32,9 @@ import pandas as pd
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 
+import mlflow
+import mlflow.sklearn
+from mlflow.tracking import MlflowClient
 
 # ---------------------------------------------------------------------------
 # Constantes de chemin
@@ -43,6 +46,11 @@ MODELS_DIR: Path = ROOT / "models"
 REGISTRY_DIR: Path = ROOT / "registry"
 CURRENT_MODEL_PATH: Path = REGISTRY_DIR / "current_model.txt"
 LOG_PATH: Path = ROOT / "logs" / "predictions.log"
+
+MLFLOW_TRACKING_URI = "http://127.0.0.1:5000"
+MODEL_NAME = "churn_model"
+ALIAS = "production"
+MODEL_URI = f"models:/{MODEL_NAME}@{ALIAS}"
 
 
 # ---------------------------------------------------------------------------
@@ -102,78 +110,27 @@ _model_cache: dict[str, Any] = {"name": None, "model": None}
 
 
 def get_current_model_name() -> str:
-    """
-    Lit le nom du modèle courant dans le fichier de registry.
-
-
-    Retour
-    ------
-    str
-        Nom du fichier modèle (ex. "churn_model_v1_20251210_120000.joblib").
-
-
-    Exceptions
-    ----------
-    FileNotFoundError
-        Si le fichier n'existe pas ou est vide.
-    """
-    if not CURRENT_MODEL_PATH.exists():
-        raise FileNotFoundError(
-            "Aucun modèle courant. Lancer train.py (avec gate) d'abord."
-        )
-
-
-    name = CURRENT_MODEL_PATH.read_text(encoding="utf-8").strip()
-    if not name:
-        raise FileNotFoundError(
-            "Fichier current_model.txt vide. Aucun modèle activé."
-        )
-
-
-    return name
+    mlflow.set_tracking_uri(MLFLOW_TRACKING_URI)
+    client = MlflowClient()
+    mv = client.get_model_version_by_alias(MODEL_NAME, ALIAS)
+    return f"{MODEL_NAME}@{ALIAS} (v{mv.version})"
 
 
 
 def load_model_if_needed() -> tuple[str, Any]:
-    """
-    Charge le modèle courant en mémoire si nécessaire.
+    mlflow.set_tracking_uri(MLFLOW_TRACKING_URI)
 
+    # Cache key = model URI (alias), not local filename
+    cache_key = MODEL_URI
 
-    Utilise un cache simple en mémoire (_model_cache) pour éviter
-    de recharger le même modèle à chaque requête.
+    if _model_cache["name"] == cache_key and _model_cache["model"] is not None:
+        return cache_key, _model_cache["model"]
 
+    model = mlflow.sklearn.load_model(MODEL_URI)
 
-    Retour
-    ------
-    (str, Any)
-        Tuple (nom_du_modèle, objet_modèle_scikit_learn).
-
-
-    Exceptions
-    ----------
-    FileNotFoundError
-        Si le modèle indiqué dans le registry n'existe pas sur disque.
-    """
-    name = get_current_model_name()
-
-
-    # Si le modèle courant est déjà en cache, on le réutilise.
-    if _model_cache["name"] == name and _model_cache["model"] is not None:
-        return name, _model_cache["model"]
-
-
-    # Sinon, chargement depuis le disque
-    path = MODELS_DIR / name
-    if not path.exists():
-        raise FileNotFoundError(f"Modèle introuvable sur disque : {path}")
-
-
-    model = joblib.load(path)
-    _model_cache["name"] = name
+    _model_cache["name"] = cache_key
     _model_cache["model"] = model
-
-
-    return name, model
+    return cache_key, model
 
 
 
