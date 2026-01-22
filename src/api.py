@@ -305,3 +305,68 @@ def predict(req: PredictRequest) -> dict[str, Any]:
 
     log_prediction(out)
     return out
+
+@app.get("/health")
+def health() -> dict[str, Any]:
+    """
+    Endpoint de santé de l'API.
+
+
+    Vérifie simplement qu'un modèle courant est bien configuré.
+
+
+    Retour
+    ------
+    dict
+        - status : "ok" ou "error"
+        - current_model : nom du modèle courant (si OK)
+        - detail : message d'erreur (si error)
+    """
+    try:
+        model_name = get_current_model_name()
+        return {"status": "ok", "current_model": model_name}
+    except Exception as exc:  # pragma: no cover - simple endpoint de debug
+        return {"status": "error", "detail": str(exc)}
+
+@app.get("/startup")
+def startup() -> dict[str, Any]:
+    """
+    Endpoint utilisé par Kubernetes startupProbe.
+
+    L'application est considérée comme démarrée UNIQUEMENT si :
+    - le registry existe,
+    - le fichier current_model.txt existe,
+    - le fichier n'est pas vide.
+    """
+    if not REGISTRY_DIR.exists():
+        raise HTTPException(
+            status_code=503,
+            detail="Registry non monté (PVC absent ou incorrect).",
+        )
+
+    if not CURRENT_MODEL_PATH.exists():
+        raise HTTPException(
+            status_code=503,
+            detail="Aucun modèle courant. Lancer train.py (avec gate) d'abord.",
+        )
+
+    name = CURRENT_MODEL_PATH.read_text(encoding="utf-8").strip()
+    if not name:
+        raise HTTPException(
+            status_code=503,
+            detail="current_model.txt vide.",
+        )
+
+    return {
+        "status": "ok",
+        "current_model": name,
+    }
+
+
+@app.get("/ready")
+def ready() -> dict[str, Any]:
+    try:
+        model_name = get_current_model_name()
+        return {"status": "ready", "current_model": model_name}
+    except Exception as exc:
+        raise HTTPException(status_code=503, detail=str(exc))
